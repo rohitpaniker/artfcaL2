@@ -13,5 +13,6 @@ Steps to install and run this application
 3. yarn install
 
 4. Please download a chrome extension and enable it to avoid CORS error when the app uses Google Trend API
+url: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
 
 5. yarn start
