@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
+import Cookie from 'universal-cookie'
+
+const cookies = new Cookie()
 
 class GeoTrendWidget extends Component {
   constructor(props) {
@@ -18,12 +21,45 @@ class GeoTrendWidget extends Component {
     }
   }
 
+  componentWillMount() {
+    if(!cookies.get('auth')){
+      this.props.history.push('/login')
+    }
+  }
+
   handleRouteAnalytics = (country) => {
     this.props.history.push('/'+country)
   }
 
   handleFlagEvent = (ElementId, EventName) => {
-    console.log(ElementId, EventName);
+    switch(ElementId) {
+      case 'indianFlag':
+        // console.log(ElementId, EventName);
+        if(EventName == 'mouseover') {
+          document.getElementById('indCountryName').style["opacity"] = 1
+          return
+        }
+        document.getElementById('indCountryName').style["opacity"] = 0
+        break;
+      case 'americanFlag':
+        if(EventName == 'mouseover') {
+          document.getElementById('usCountryName').style["opacity"] = 1
+          return
+        }
+        document.getElementById('usCountryName').style["opacity"] = 0
+        // console.log(ElementId, EventName);
+        break;
+      case 'canadianFlag':
+        if(EventName == 'mouseover') {
+          document.getElementById('cndCountryName').style["opacity"] = 1
+          return
+        }
+        document.getElementById('cndCountryName').style["opacity"] = 0
+        // console.log(ElementId, EventName);
+        break
+      default:
+        break;
+    }
   }
 
   render() {

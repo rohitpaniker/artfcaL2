@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import googleTrends from 'google-trends-api'
 import {Pie, Bar, Line} from 'react-chartjs-2';
 import randomcolor from 'randomcolor';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 export default class Analytics extends Component {
   constructor(props) {
@@ -77,7 +80,9 @@ export default class Analytics extends Component {
   }
 
   componentDidMount() {
-
+    if(!cookies.get('auth')){
+      this.props.history.push('/login')
+    }
     googleTrends.interestByRegion({ keyword: ['Startups'], geo: this.state.country[this.props.match.params.countryId], startTime: new Date('2016-01-01'), endTime: new Date('2017-01-01')})
     .then((results) => {
       let tempObj = {}
