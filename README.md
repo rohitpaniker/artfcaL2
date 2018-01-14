@@ -17,7 +17,7 @@ url: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbo
 
 5. yarn start
 
-** Default Credentials
+## Default Credentials
 
-** Username: admin
-** Password: admin@123
+## Username: admin
+## Password: admin@123
