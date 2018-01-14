@@ -16,3 +16,8 @@ Steps to install and run this application
 url: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
 
 5. yarn start
+
+** Default Credentials
+
+** Username: admin
+** Password: admin@123
