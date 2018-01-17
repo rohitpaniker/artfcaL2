@@ -21,3 +21,28 @@ url: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbo
 
 ## Username: admin
 ## Password: admin@123
+
+## To use the widget independently in any other projects:
+
+1. Copy everything from within components directory
+
+2. Paste in your src folder (you may create components directory but you may do as you please)
+
+3. Wherever you want to import the Flag with Analytics UI, just do:  
+
+import GeoTrendWidget from './components/GeoTrendWidget'
+
+4. Declare the component within any div like:
+
+<GeoTrendWidget showParentHeader='disabled'/>
+
+5. If you want to control show/hide of your header in your page, configure callback in the component like:
+
+<GeoTrendWidget showParentHeader={this.showParentHeader}/>
+
+Write the callback function to handle the events you want to control:
+ 
+showParentHeader = (value) => {
+  console.log(value)
+  this.setState({ renderHeader: value })
+}

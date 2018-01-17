@@ -33,7 +33,8 @@ class GeoTrendWidget extends Component {
 
   handleRouteAnalytics = (country) => {
     //this.props.history.push('/'+country)
-    this.props.showParentHeader(false);
+    if(this.props.showParentHeader !== 'disabled')
+      this.props.showParentHeader(false);
     this.setState({
       renderAnalytics: true,
       countryId: country
@@ -77,10 +78,12 @@ class GeoTrendWidget extends Component {
       this.setState({
         renderAnalytics: false
       })
-      this.props.showParentHeader(true);
+      if(this.props.showParentHeader !== 'disabled')
+        this.props.showParentHeader(true);
       return
     }
-    this.props.showParentHeader(false);
+    if(this.props.showParentHeader !== 'disabled')
+      this.props.showParentHeader(false);
   }
 
   render() {

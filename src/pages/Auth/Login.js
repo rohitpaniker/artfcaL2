@@ -87,10 +87,10 @@ class Login extends Component {
     const { displayState } = this.state
     return(
       <div className="rootLoginPage">
-        <div class="login">
-         <div class="login-triangle"></div>
-         <h2 class="login-header">Log in</h2>
-         <form class="login-container">
+        <div className="login">
+         <div className="login-triangle"></div>
+         <h2 className="login-header">Log in</h2>
+         <form className="login-container">
            <p><input type="text" placeholder="Username" value={this.state.uValue} onChange={this.handleUsername}/></p>
            <p><input type="password" placeholder="Password" value={this.state.pValue} onChange={this.handlePassword}/></p>
            <div className="loginSignupButtonDiv" style={{ display: 'flex', flexDirection: 'row' }}>
