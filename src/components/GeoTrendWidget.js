@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
-import Cookie from 'universal-cookie'
+import Analytics from './Analytics'
+// import Cookie from 'universal-cookie'
+import './widget.css';
 
-const cookies = new Cookie()
+// const cookies = new Cookie()
 
 class GeoTrendWidget extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      renderAnalytics: false,
+      countryId: '',
       countries: ['India', 'America', 'Canada'],
       idNames: ['indCountryName', 'usCountryName', 'cndCountryName'],
       spanIdNames: ['indCountryName', 'usCountryName', 'cndCountryName'],
@@ -21,28 +25,33 @@ class GeoTrendWidget extends Component {
     }
   }
 
-  componentWillMount() {
-    if(!cookies.get('auth')){
-      this.props.history.push('/login')
-    }
-  }
+  // componentWillMount() {
+  //   if(!cookies.get('auth')){
+  //     this.props.history.push('/login')
+  //   }
+  // }
 
   handleRouteAnalytics = (country) => {
-    this.props.history.push('/'+country)
+    //this.props.history.push('/'+country)
+    this.props.showParentHeader(false);
+    this.setState({
+      renderAnalytics: true,
+      countryId: country
+    })
   }
 
   handleFlagEvent = (ElementId, EventName) => {
     switch(ElementId) {
       case 'indianFlag':
         // console.log(ElementId, EventName);
-        if(EventName == 'mouseover') {
+        if(EventName === 'mouseover') {
           document.getElementById('indCountryName').style["opacity"] = 1
           return
         }
         document.getElementById('indCountryName').style["opacity"] = 0
         break;
       case 'americanFlag':
-        if(EventName == 'mouseover') {
+        if(EventName === 'mouseover') {
           document.getElementById('usCountryName').style["opacity"] = 1
           return
         }
@@ -50,7 +59,7 @@ class GeoTrendWidget extends Component {
         // console.log(ElementId, EventName);
         break;
       case 'canadianFlag':
-        if(EventName == 'mouseover') {
+        if(EventName === 'mouseover') {
           document.getElementById('cndCountryName').style["opacity"] = 1
           return
         }
@@ -62,39 +71,57 @@ class GeoTrendWidget extends Component {
     }
   }
 
+  closeLytics = (boolVal) => {
+    console.log(boolVal)
+    if(boolVal) {
+      this.setState({
+        renderAnalytics: false
+      })
+      this.props.showParentHeader(true);
+      return
+    }
+    this.props.showParentHeader(false);
+  }
+
   render() {
-    const { countries, countryCode, idNames, spanIdNames, classNames, spanClassNames, flagUri, redirect  } = this.state;
+    const { renderAnalytics, countryId, countries, spanIdNames, classNames, spanClassNames, flagUri  } = this.state;
 
     return(
       <div className="rootGeoTrendWidgetComponent">
-        <div className="container">
-          {classNames.map((data, index) => {
-            if(data !== 'canadianFlag') {
-              return(
-                <div className={data} onClick={this.handleRouteAnalytics.bind(null, data)} onMouseOver={this.handleFlagEvent.bind(null, data, 'mouseover')} onMouseLeave={this.handleFlagEvent.bind(null, data, 'mouseleave')}>
-                  <img src={flagUri[index]} width="225" height="150"/>
-                  <span id={spanIdNames[index]} className={spanClassNames[index]}> {countries[index]} </span>
-                </div>
-              );
-            } else {
-              return(
-                <div className="canadianFlag" onClick={this.handleRouteAnalytics.bind(null, 'canadianFlag')} onMouseOver={this.handleFlagEvent.bind(null, 'canadianFlag', 'mouseover')} onMouseLeave={this.handleFlagEvent.bind(null, 'canadianFlag', 'mouseleave')}>
-                  <div className="flipper">
-                    <div className="front">
-                      <img src="http://www.uk-da.com/cdn/450x300-canadian-flag-8-by-merlin2525-9991314.jpeg" width="225" height="150"/>
+        {renderAnalytics
+          ? <Analytics
+             countryId={countryId}
+             closeLytics={this.closeLytics}
+           />
+          : <div className="container">
+              {classNames.map((data, index) => {
+                if(data !== 'canadianFlag') {
+                  return(
+                    <div key={index} className={data} onClick={this.handleRouteAnalytics.bind(null, data)} onMouseOver={this.handleFlagEvent.bind(null, data, 'mouseover')} onMouseLeave={this.handleFlagEvent.bind(null, data, 'mouseleave')}>
+                      <img src={flagUri[index]} width="225" height="150" alt=""/>
+                      <span id={spanIdNames[index]} className={spanClassNames[index]}> {countries[index]} </span>
                     </div>
-                    <div className="back">
-                      <span id='cndCountryName'> Canada </span>
+                  );
+                } else {
+                  return(
+                    <div key={index} className="canadianFlag" onClick={this.handleRouteAnalytics.bind(null, 'canadianFlag')} onMouseOver={this.handleFlagEvent.bind(null, 'canadianFlag', 'mouseover')} onMouseLeave={this.handleFlagEvent.bind(null, 'canadianFlag', 'mouseleave')}>
+                      <div className="flipper">
+                        <div className="front">
+                          <img src="http://www.uk-da.com/cdn/450x300-canadian-flag-8-by-merlin2525-9991314.jpeg" width="225" height="150" alt=""/>
+                        </div>
+                        <div className="back">
+                          <span id='cndCountryName'> Canada </span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            }
-          })}
+                  );
+                }
+              })}
+            </div>
+          }
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 export default withRouter(GeoTrendWidget);

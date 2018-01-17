@@ -94,7 +94,7 @@ class Login extends Component {
            <p><input type="text" placeholder="Username" value={this.state.uValue} onChange={this.handleUsername}/></p>
            <p><input type="password" placeholder="Password" value={this.state.pValue} onChange={this.handlePassword}/></p>
            <div className="loginSignupButtonDiv" style={{ display: 'flex', flexDirection: 'row' }}>
-             <input type="button" value="Log in" style={{ marginRight:2 }} onClick={this.handleLogin} style={{ display: displayState }}/>
+             <input type="button" value="Log in" onClick={this.handleLogin} style={{ marginRight:2, display: displayState }}/>
              <input type="button" value="Signup" onClick={this.handleSignup}/>
            </div>
            <div className="err" style={{ display: displayState === 'block' ? 'none' : 'block', color: 'red'}}>

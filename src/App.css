@@ -27,228 +27,6 @@
   to { transform: rotate(360deg); }
 }
 
-.rootGeoTrendWidgetComponent {
-  width: 100%;
-  height: 100%;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  margin-top: 10%;
-  flex-wrap: wrap;
-  padding: 20px;
-}
-
-.rootAnalyticsInternalComponent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 10%;
-  flex-wrap: wrap;
-}
-
-.chartCustomLabel {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.indianFlag {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-#indCountryName {
-  display: flex;
-  justify-content: center;
-  opacity: 0;
-}
-
-.americanFlag {
-  text-align: center;
-  position: relative;
-  color: #fffefe;
-  font-weight: 600;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#usCountryName {
-  position: absolute;
-  top: 12px;
-  left: 7px;
-  background-color: #00000061;
-  width: 93%;
-  height: 76%;
-  opacity: 0;
-}
-
-.canadianFlag {
-  -webkit-perspective: 1000;
-  -moz-perspective: 1000;
-  -o-perspective: 1000;
-  perspective: 1000;
-  cursor: pointer;
-}
-
-#cndCountryName {
-  display: flex;
-  justify-content: center;
-}
-
-.canadianFlag:hover .flipper,
-  .canadianFlag.hover .flipper {
-		-webkit-transform: rotateY(180deg);
-		-moz-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-		transform: rotateY(180deg);
-	}
-
-.canadianFlag, .front, .back {
-	width: 225px;
-	height: 150px;
-}
-
-.flipper {
-	-webkit-transition: 0.6s;
-	-webkit-transform-style: preserve-3d;
-
-	-moz-transition: 0.6s;
-	-moz-transform-style: preserve-3d;
-
-  -o-transition: 0.6s;
-	-o-transform-style: preserve-3d;
-
-	transition: 0.6s;
-	transform-style: preserve-3d;
-
-	position: relative;
-}
-
-.front, .back {
-	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-	backface-visibility: hidden;
-
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-.front {
-	z-index: 2;
-}
-
-.back {
-	-webkit-transform: rotateY(180deg);
-	-moz-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-	transform: rotateY(180deg);
-
-	background: #f8f8f8;
-}
-
-.text-focus-in{-webkit-animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both;animation:text-focus-in 1s cubic-bezier(.55,.085,.68,.53) both}
-.text-blur-out{-webkit-animation:text-blur-out 1.2s cubic-bezier(.55,.085,.68,.53) both;animation:text-blur-out 1.2s cubic-bezier(.55,.085,.68,.53) both}
-
-
-
-.indianFlag:hover .indCountryName
-{
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
-    -moz-animation: fadeInFromNone 0.5s ease-out;
-    -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
-}
-
-.americanFlag:hover .usCountryName
-{
-    -webkit-animation: fadeInFromNone 0.5s ease-out;
-    -moz-animation: fadeInFromNone 0.5s ease-out;
-    -o-animation: fadeInFromNone 0.5s ease-out;
-    animation: fadeInFromNone 0.5s ease-out;
-}
-
-@-webkit-keyframes fadeInFromNone {
-    0% {
-        display: none;
-        opacity: 0;
-    }
-
-    1% {
-        display: block;
-        opacity: 0;
-    }
-
-    100% {
-        display: block;
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes fadeInFromNone {
-    0% {
-        display: none;
-        opacity: 0;
-    }
-
-    1% {
-        display: block;
-        opacity: 0;
-    }
-
-    100% {
-        display: block;
-        opacity: 1;
-    }
-}
-
-@-o-keyframes fadeInFromNone {
-    0% {
-        display: none;
-        opacity: 0;
-    }
-
-    1% {
-        display: block;
-        opacity: 0;
-    }
-
-    100% {
-        display: block;
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInFromNone {
-    0% {
-        display: none;
-        opacity: 0;
-    }
-
-    1% {
-        display: block;
-        opacity: 0;
-    }
-
-    100% {
-        display: block;
-        opacity: 1;
-    }
-}
-
-
-
-
-
-
-
-
 /* LOGIN PAGE CSS */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
@@ -335,3 +113,67 @@
 .login input[type="button"]:focus {
   border-color: #05a;
 }
+
+/* landing header css*/
+
+.landingHeader {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(33, 150, 243);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding-right: 30px;
+  align-items: center;
+  font-size: 45px;
+  margin-bottom: 10%;
+}
+
+/* material button css */
+
+/* Button */
+    .button {
+      display: inline-block;
+      position: relative;
+      width: 120px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 2px;
+      font-size: 0.4em;
+      background-color: #fff;
+      color: #646464;
+    }
+
+    .button > paper-ripple {
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .button.narrow {
+      width: 60px;
+    }
+
+    .button.grey {
+      background-color: #eee;
+    }
+
+    .button.blue {
+      background-color: #4285f4;
+      color: #fff;
+    }
+
+    .button.green {
+      background-color: #0f9d58;
+      color: #fff;
+    }
+
+    .button.raised {
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+
+    .button.raised:active {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;
+    }

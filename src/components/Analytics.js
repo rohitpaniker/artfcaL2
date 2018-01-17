@@ -3,6 +3,7 @@ import googleTrends from 'google-trends-api'
 import {Pie, Bar, Line} from 'react-chartjs-2';
 import randomcolor from 'randomcolor';
 import Cookies from 'universal-cookie';
+import './widget.css';
 
 const cookies = new Cookies();
 
@@ -83,11 +84,10 @@ export default class Analytics extends Component {
     if(!cookies.get('auth')){
       this.props.history.push('/login')
     }
-    googleTrends.interestByRegion({ keyword: ['Startups'], geo: this.state.country[this.props.match.params.countryId], startTime: new Date('2016-01-01'), endTime: new Date('2017-01-01')})
+    googleTrends.interestByRegion({ keyword: ['Startups'], geo: this.state.country[this.props.countryId], startTime: new Date('2016-01-01'), endTime: new Date('2017-01-01')})
     .then((results) => {
       let tempObj = {}
       let tempLabelArr = []
-      let tempDatasetsArr = []
       let tempDataArr = []
       let tempBackgroundColor = []
       let tempHoverBackgroundColor = []
@@ -112,7 +112,7 @@ export default class Analytics extends Component {
       console.error('Oh no there was an error', err);
     });
 
-    googleTrends.interestByRegion({ keyword: ['Angular JS'], geo: this.state.country[this.props.match.params.countryId], startTime: new Date('2015-01-01'), endTime: new Date('2018-01-01')})
+    googleTrends.interestByRegion({ keyword: ['Angular JS'], geo: this.state.country[this.props.countryId], startTime: new Date('2015-01-01'), endTime: new Date('2018-01-01')})
     .then((results) => {
       let tempObj = {}
       let tempLabelArr = []
@@ -142,7 +142,7 @@ export default class Analytics extends Component {
       console.error('Oh no there was an error', err);
     });
 
-    googleTrends.interestByRegion({ keyword: ['React JS'], geo: this.state.country[this.props.match.params.countryId], startTime: new Date('2015-01-01'), endTime: new Date('2018-01-01')})
+    googleTrends.interestByRegion({ keyword: ['React JS'], geo: this.state.country[this.props.countryId], startTime: new Date('2015-01-01'), endTime: new Date('2018-01-01')})
     .then((results) => {
       let tempObj = {}
       let tempLabelArr = []
@@ -191,16 +191,21 @@ export default class Analytics extends Component {
       return (
         <div className="rootAnalyticsInternalComponent">
           <div className="loaderDiv">
-            <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif'/>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif' alt=''/>
           </div>
         </div>
       )
     }
     return(
       <div className="rootAnalyticsInternalComponent">
+        <div className="anayticsHeader">
+          <div className="closeLytics" onClick={this.props.closeLytics.bind(null, true)}>
+            x
+          </div>
+        </div>
         <div className="piechart" style={{width: "50%", marginBottom: 40}}>
           <div className="chartCustomLabel">
-            <label>Startups in {country[this.props.match.params.countryId] === 'IN' ? 'India' : country[this.props.match.params.countryId] === 'US' ? 'America' : 'Canada'}</label>
+            <label>Startups in {country[this.props.countryId] === 'IN' ? 'India' : country[this.props.countryId] === 'US' ? 'America' : 'Canada'}</label>
           </div>
           <Pie
             data={pieData}
