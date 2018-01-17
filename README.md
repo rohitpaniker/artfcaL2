@@ -32,16 +32,12 @@ url: https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbo
 
 import GeoTrendWidget from './components/GeoTrendWidget'
 
-4. Declare the component within any div like:
+4. Declare the component within any div like: <GeoTrendWidget showParentHeader='disabled'/>
 
-<GeoTrendWidget showParentHeader='disabled'/>
-
-5. If you want to control show/hide of your header in your page, configure callback in the component like:
-
-<GeoTrendWidget showParentHeader={this.showParentHeader}/>
+5. If you want to control show/hide of your header in your page, configure callback in the component like: <GeoTrendWidget showParentHeader={this.showParentHeader}/>
 
 Write the callback function to handle the events you want to control:
- 
+
 showParentHeader = (value) => {
   console.log(value)
   this.setState({ renderHeader: value })
