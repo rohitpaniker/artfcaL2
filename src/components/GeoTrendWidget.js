@@ -18,9 +18,9 @@ class GeoTrendWidget extends Component {
       classNames: ['indianFlag', 'americanFlag', 'canadianFlag'],
       spanClassNames: ['indCountryName', 'usCountryName', 'cndCountryName'],
       flagUri: [
-        'http://flaglane.com/download/indian-flag/indian-flag-graphic.png',
-        'https://us.123rf.com/450wm/stillfx/stillfx1412/stillfx141200165/34460771-closeup-of-american-flag-stars-and-stripes.jpg?ver=6',
-        'http://www.uk-da.com/cdn/450x300-canadian-flag-8-by-merlin2525-9991314.jpeg'
+        'indian-flag-graphic.png',
+        '34460771-closeup-of-american-flag-stars-and-stripes.jpg',
+        '450x300-canadian-flag-8-by-merlin2525-9991314.jpeg'
       ]
     }
   }
@@ -101,7 +101,7 @@ class GeoTrendWidget extends Component {
                 if(data !== 'canadianFlag') {
                   return(
                     <div key={index} className={data} onClick={this.handleRouteAnalytics.bind(null, data)} onMouseOver={this.handleFlagEvent.bind(null, data, 'mouseover')} onMouseLeave={this.handleFlagEvent.bind(null, data, 'mouseleave')}>
-                      <img src={flagUri[index]} width="225" height="150" alt=""/>
+                      <img src={require(`./../assets/images/${flagUri[index]}`)} width="225" height="150" alt=""/>
                       <span id={spanIdNames[index]} className={spanClassNames[index]}> {countries[index]} </span>
                     </div>
                   );
